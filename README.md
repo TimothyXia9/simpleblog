@@ -8,6 +8,7 @@
 
     python=3.8.17
     django=4.2.3
+    vue3
 
 安装依赖
 
@@ -17,7 +18,8 @@
 
 - [x] 项目创建
 - [X] 配置环境
-- [ ] 更改base.html
+- [ ] 研究vue
+- [ ] django
   
 ## note
 
@@ -30,8 +32,14 @@
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "staticfiles"),]
 
-### 2. bootstrap配置
+### 2. Vue 配置
 
-下载bootstrap文件, 放在static文件夹下, 在base.html中引入
+直接查看网页
 
-另需下载jquery.min.js
+    npm run serve
+
+打包给django
+
+    npm run build
+
+将打包后的dist文件放入static文件夹中
