@@ -1,19 +1,30 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
+<html lang="zh-Hans-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="icon" href="{% static '/favicon.ico' %}" />
+		<title>simpleblog</title>
+		<script defer="defer" src="{% static 'js/chunk-vendors.396a3924.js' %}"></script>
+		<script defer="defer" src="{% static 'js/app.24581580.js' %}"></script>
+	</head>
+	<body>
+		<noscript><strong>We're sorry but simpleblog doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript>
+		<div><button onclick="viewAllUsers()">查看所有用户</button> <button onclick="createUser()">填写用户信息</button></div>
+		<div><button>test button</button></div>
 
-<html lang="">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <link rel="icon" href="{% static 'favicon.ico' %}" />
-        <title>simpleblog</title>
-        <script defer="defer" src="{% static 'js/chunk-vendors.236863cc.js' %}"></script>
-        <script defer="defer" src="{% static 'js/app.816b2ca7.js' %}"></script>
-        <link href="{% static 'css/app.2cf79ad6.css' %}" rel="stylesheet" />
-    </head>
-    <body>
-        <noscript><strong>We're sorry but simpleblog doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript>
-        <div id="app"></div>
-    </body>
+		<script>
+			// 查看所有用户的按钮点击事件
+			function viewAllUsers() {
+				window.location.href = "/view-users"; // 请替换为实际的URL，用于显示所有用户的页面
+			}
+
+			// 填写用户信息的按钮点击事件
+			function createUser() {
+				window.location.href = "/create-user"; // 请替换为实际的URL，用于填写用户信息的页面
+			}
+		</script>
+	</body>
 </html>

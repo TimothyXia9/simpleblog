@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-Hans-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="{% static '/favicon.ico' %}" />
+		<title>Create User</title>
+	</head>
+	<body>
+		<h1>Create User</h1>
+		<form id="createUserForm">
+			<label for="username">Username:</label>
+			<input type="text" id="username" required />
+
+			<label for="email">Email:</label>
+			<input type="email" id="email" required />
+
+			<label for="nickname">Nickname:</label>
+			<input type="text" id="nickname" />
+
+			<label for="bio">Bio:</label>
+			<textarea id="bio" rows="4"></textarea>
+
+			<label for="profile_picture">Profile Picture:</label>
+			<input type="file" id="profile_picture" />
+
+			<button type="submit">Add User</button>
+		</form>
+
+		<script>
+			document.getElementById("createUserForm").addEventListener("submit", function (event) {
+				event.preventDefault();
+				// 获取表单字段的值
+				const username = document.getElementById("username").value;
+				const email = document.getElementById("email").value;
+				const nickname = document.getElementById("nickname").value;
+				const bio = document.getElementById("bio").value;
+				const profilePicture = document.getElementById("profile_picture").files[0];
+
+				// 创建FormData对象
+				const formData = new FormData();
+				formData.append("username", username);
+				formData.append("email", email);
+				formData.append("nickname", nickname);
+				formData.append("bio", bio);
+				formData.append("profile_picture", profilePicture);
+
+				// 使用axios发送POST请求到后端创建用户
+				axios
+					.post("/api/users/", formData, {
+						headers: {
+							"Content-Type": "multipart/form-data", // 设置请求头为multipart/form-data
+						},
+					})
+					.then((response) => {
+						console.log("User added:", response.data);
+						// 清空表单数据
+						document.getElementById("username").value = "";
+						document.getElementById("email").value = "";
+						document.getElementById("nickname").value = "";
+						document.getElementById("bio").value = "";
+						document.getElementById("profile_picture").value = "";
+					})
+					.catch((error) => {
+						console.error("Error adding user:", error);
+					});
+			});
+		</script>
+	</body>
+</html>
