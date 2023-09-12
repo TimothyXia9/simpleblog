@@ -7,4 +7,7 @@ router.register("blogs", views.BlogViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
+    path(
+        "api/blogs/<int:pk>/delete/", views.BlogDeleteView.as_view(), name="blog-delete"
+    ),
 ]
